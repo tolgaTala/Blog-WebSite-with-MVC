@@ -1,0 +1,38 @@
+﻿@model DiscussionForAddDto
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Yorum Yönetimi /</span> Yorum Ekle
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header"></h5>
+                <div class="card-body">
+                    <form asp-controller="DiscussionFor" asp-action="Add" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <input type="hidden" asp-for="DiscussionId" />
+                        <div class="form-group">
+                            <label asp-for="Content" class="form-label">İçerik</label>
+                            <textarea asp-for="Content" type="text" class="form-control mb-3" id="defaultFormControlInput" style="min-height:300px" placeholder="İçerik" aria-describedby="defaultFormControlHelp"></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+

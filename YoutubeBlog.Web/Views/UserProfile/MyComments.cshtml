@@ -1,0 +1,173 @@
+﻿@{
+    Layout = "_UserProfileLayout";
+}
+
+@using YoutubeBlog.Entity.Dtos.Discussions
+@model List<DiscussionDto>
+<head>
+	<style>
+		hr {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			border: 0;
+			border-top: 1px solid #FFFFFF;
+		}
+
+		a {
+			color: #82b440;
+			text-decoration: none;
+		}
+
+		.blog-comment::before,
+		.blog-comment::after,
+		.blog-comment-form::before,
+		.blog-comment-form::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.blog-comment {
+			padding-left: 5%;
+			padding-right: 5%;
+		}
+
+			.blog-comment ul {
+				list-style-type: none;
+				padding: 0;
+			}
+
+			.blog-comment img {
+				opacity: 1;
+				filter: Alpha(opacity=100);
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-o-border-radius: 4px;
+				border-radius: 4px;
+			}
+
+				.blog-comment img.avatar {
+					position: relative;
+					float: left;
+					margin-left: 0;
+					margin-top: 0;
+					width: 65px;
+					height: 65px;
+				}
+
+			.blog-comment .post-comments {
+				border: 1px solid #eee;
+				margin-bottom: 20px;
+				margin-left: 85px;
+				margin-right: 0px;
+				padding: 10px 20px;
+				position: relative;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-o-border-radius: 4px;
+				border-radius: 4px;
+				background: #fff;
+				color: #6b6e80;
+				position: relative;
+			}
+
+			.blog-comment .meta {
+				font-size: 13px;
+				color: #aaaaaa;
+				padding-bottom: 8px;
+				margin-bottom: 10px !important;
+				border-bottom: 1px solid #eee;
+			}
+
+			.blog-comment ul.comments ul {
+				list-style-type: none;
+				padding: 0;
+				margin-left: 85px;
+			}
+
+		.blog-comment-form {
+			padding-left: 15%;
+			padding-right: 15%;
+			padding-top: 40px;
+		}
+
+			.blog-comment h3,
+			.blog-comment-form h3 {
+				margin-bottom: 40px;
+				font-size: 26px;
+				line-height: 30px;
+				font-weight: 800;
+			}
+	</style>
+</head>
+<body>
+	<div class="container bootstrap snippets bootdey">
+		<div class="row">
+			<div class="col-md-12 mt-5">
+				<div class="blog-comment">
+					<h3 class="text-success">Yaptığım Yorumlarım</h3>
+					<hr />
+					<ul class="comments">
+						@if (Model.Count > 0)
+						{
+							@foreach (var discussion in Model)
+							{
+								<li class="clearfix">
+									<img src="~/images/@discussion.User.Image.FileName" class="avatar" alt="">
+									<div class="post-comments">
+										<p class="meta">
+											<a href="#"><b style="font-size:18px">@discussion.User.FirstName @discussion.User.LastName</b> </a>
+											<i class="pull-right">
+												<a href="#"><small>@discussion.CreatedDate.ToString("HH:mm dddd, dd MMMM yyyy")</small></a>
+											</i>
+										</p>
+										<p class="meta">
+											@discussion.Title
+										</p>
+										<p>
+											@discussion.Content
+										</p>
+									</div>
+									@foreach (var discuss in discussion.DiscussionFors)
+									{
+										<ul class="comments">
+											<li class="clearfix">
+												<img src="~/images/@discuss.User.Image.FileName" class="avatar" alt="">
+												<div class="post-comments">
+													<p class="meta">
+														<a href="#"><b style="font-size:18px">@discuss.User.FirstName @discuss.User.LastName</b> </a>
+														<i class="pull-right">
+															<a href="#"><small>@discuss.CreatedDate.ToString("HH:mm dddd, dd MMMM yyyy")</small></a>
+														</i>
+														<a class="btn btn-danger btn-sm" style="margin-left:700px" data-id="@discuss.Id" asp-controller="DiscussionFor" asp-action="HardDelete" asp-route-discussionId="@discuss.Id">
+															<i class="bx bx-trash"></i>
+														</a>
+													</p>
+													<p>
+														@discuss.Content
+													</p>
+												</div>
+											</li>
+										</ul>
+									}
+
+								</li>
+							}
+						}
+						else
+						{
+							<ul class="comments">
+								<li class="clearfix">
+									<div class="post-comments">
+										<p>Henüz hiç yorum yok...</p>
+									</div>
+								</li>
+							</ul>
+						}
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

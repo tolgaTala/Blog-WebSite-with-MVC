@@ -1,0 +1,82 @@
+﻿@using YoutubeBlog.Entity.Dtos.Users
+@model UserDto
+<head>
+    <link rel="stylesheet" href="~/sneat/assets/vendor/fonts/boxicons.css" />
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/sneat/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/sneat/assets/css/demo.css" />
+</head>
+
+
+    @if (Model!=null)
+    {
+        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+            <a class="nav-link" style="padding:15px; color:dimgray; margin-right:-30px;margin-top:3px; font-size:17px">
+                @Model.FirstName @Model.LastName
+            </a>
+        </li>
+        <li class="nav-item navbar-dropdown dropdown-user dropdown">
+            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                <div class="avatar avatar-online">
+                <img src="~/images/@Model.Image.FileName" alt class="w-px-40 h-auto rounded-circle">
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="avatar avatar-online">
+                                <img src="~/images/@Model.Image.FileName" alt class="w-px-40 h-auto rounded-circle">
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <span class="fw-medium d-block">@Model.FirstName @Model.LastName</span>
+                                <small class="text-muted">@Model.Role</small>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="UserProfile" asp-action="UserProfile">
+                        <i class="bx bx-user me-2"></i>
+                        <spana class="align-middle">Profilim</spana>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Home" asp-action="Index">
+                        <span class="d-flex align-items-center align-middle">
+                            <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                            <span class="flex-grow-1 align-middle ms-1">Siteye Dön</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Auth" asp-action="Logout">
+                        <i class="bx bx-power-off me-2"></i>
+                        <span class="align-middle">Çıkış Yap</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item active">
+            <a  asp-controller="Auth" asp-action="Login" class="nav-link btn btn-info" style="padding:15px; color:white">
+                Gİrİş Yap 
+            </a>
+        </li>
+        <li class="nav-item active">
+            <a asp-controller="UserProfile" asp-action="UserSignIn" class="nav-link btn btn-info" style="padding:15px; color:white">
+                Kaydol 
+            </a>
+        </li>
+    }

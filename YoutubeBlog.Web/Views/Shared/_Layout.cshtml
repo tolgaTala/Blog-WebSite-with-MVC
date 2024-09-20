@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogbudur</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/YoutubeBlog.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="~/stand-blog/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="~/stand-blog/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="~/stand-blog/assets/css/owl.css">
+
+    
+   
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="">
+        <nav class="navbar navbar-expand-lg" style="background-color:aquamarine">
+            <div class="container">
+                <div class="justify-content-lg-start">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index"><h2>BlogBudur<em>.</em></h2></a>
+                    <a asp-controller="Discussion" asp-action="Index" class="btn btn-secondary" style="margin-top:5px; margin-left: 5rem; font-size:20px;"><b>Forum Sayfası</b></a>
+                </div>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" style="flex-grow:0" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        @await Component.InvokeAsync("UserProfile")
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+
+    <div style="height:150px"></div>
+
+    @RenderBody()
+   
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="social-icons">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Linkedin</a></li>
+                        <li><a href="#">Github</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <p>
+                            Copyright 2024 BlogBudur Co.
+
+                            | Design: <a rel="nofollow" href="https://turkuhaz.netlify.app/bilisim" target="_blank">Musa Altuntaş</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/stand-blog/vendor/jquery/jquery.min.js"></script>
+    <script src="~/stand-blog/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="~/stand-blog/assets/js/custom.js"></script>
+    <script src="~/stand-blog/assets/js/owl.js"></script>
+    <script src="~/stand-blog/assets/js/slick.js"></script>
+    <script src="~/stand-blog/assets/js/isotope.js"></script>
+    <script src="~/stand-blog/assets/js/accordions.js"></script>
+
+    <script language="text/Javascript">
+        cleared[0] = cleared[1] = cleared[2] = 0; 
+        function clearField(t) {                  
+            if (!cleared[t.id]) {                      
+                cleared[t.id] = 1;  
+                t.value = '';         
+                t.style.color = '#fff';
+            }
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

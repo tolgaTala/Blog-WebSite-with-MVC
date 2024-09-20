@@ -1,0 +1,133 @@
+﻿<div class="content-wrapper">
+
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+
+        <div class="row">
+            <div class="col-lg-8 mb-4 order-0">
+                <div class="card">
+                    <div class="d-flex align-items-end row">
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Admin Panele Hoşgeldiniz! 🎉</h5>
+                                <p class="mb-4">Admin olarak bu projedeyi yönetim panelinden işlemleri yapabilirsiniz.</p>
+
+                                <a href="javascript:;" class="btn btn-sm btn-outline-primary">Yönetmeye başla</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 text-center text-sm-left">
+                            <div class="card-body pb-0 px-0 px-md-4">
+                                <img src="~/sneat/assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 order-1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <i style="height:30px; font-size:2.25rem" class="menu-icon bx bx-paper-plane"></i>                                    
+                                </div>
+                                <span class="fw-medium d-block mb-1">Toplam Yayınlanan<br />Makale Sayısı</span>
+                                <h3 class="card-title mb-2" id="totalArticleCount"></h3>
+                                <small class="text-success fw-medium"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <i style="height:30px; font-size:2.25rem" class="menu-icon bx bx-category"></i>
+                                </div>
+                                <span>Toplam Eklenen <br /> Kategori Sayısı</span>
+                                <h3 class="card-title text-nowrap mb-1" id="totalCategoryCount"></h3>
+                                <small class="text-success fw-medium"></small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- Total Revenue -->
+            <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+                <div class="card">
+                    <div class="row row-bordered g-0">
+                        <div class="col-md-12">
+                            <h5 class="card-header m-0 me-2 pb-3">@DateTime.Now.Year Yılının Makale Yayınlama Analizi</h5>
+                            <div id="customTotalRevenueChart" class="px-2"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!--/ Total Revenue -->
+            <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <i style="height:30px; font-size:2.25rem" class="menu-icon bx bx-user"></i>
+                                </div>
+                                <span class="fw-medium d-block mb-1">Toplam <br />Kullanıcı Sayısı</span>
+                                <h3 class="card-title mb-2" id="totalUserCount"></h3>
+                                <small class="text-success fw-medium"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <i style="height:30px; font-size:2.25rem" class="menu-icon bx bx-comment-detail"></i>
+                                </div>
+                                <span class="fw-medium d-block mb-1">Toplam Yayınlanan<br />Forum Sayısı</span>
+                                <h3 class="card-title mb-2" id="totalForumCount"></h3>
+                                <small class="text-success fw-medium"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <i style="height:30px; font-size:2.25rem" class="menu-icon bx bx-chat"></i>
+                                </div>
+                                <span class="fw-medium d-block mb-1">Toplam Yazılan<br />Yorum Sayısı</span>
+                                <h3 class="card-title mb-2" id="totalCommentCount"></h3>
+                                <small class="text-success fw-medium"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- / Content -->
+
+
+    <div class="content-backdrop fade"></div>
+</div>
+
+@section Scripts{
+    <script src="~/js/DashboardIndex.js"></script>
+    <script>
+        var app = app || {}
+        app.Urls = app.Urls || {}
+
+        app.Urls.yearlyArticlesUrl = "@(Url.Action("YearlyArticlesCounts", "Home"))";
+        app.Urls.totalArticleCountUrl = "@(Url.Action("TotalArticleCount", "Home"))";
+        app.Urls.totalCategoryCountUrl = "@(Url.Action("TotalCategoryCount", "Home"))";
+        app.Urls.totalUserCountUrl = "@(Url.Action("TotalUserCount", "Home"))";
+        app.Urls.totalForumCountUrl = "@(Url.Action("TotalForumCount", "Home"))";
+        app.Urls.totalCommentCountUrl = "@(Url.Action("TotalCommentCount", "Home"))";
+    </script>
+}
